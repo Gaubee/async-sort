@@ -1,0 +1,18 @@
+{
+  "name": "async-sort",
+  "version": "1.0.0",
+  "description": "",
+  "types": "dist/src/index.d.ts",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "test": "node dist/test/1.test.js",
+    "dev": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.1.2",
+    "console-pro": "^2.0.3"
+  }
+}
