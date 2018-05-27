@@ -5,3 +5,5 @@ package-lock.json
 .npmignore
 .cache
 dist
+build
+.vs

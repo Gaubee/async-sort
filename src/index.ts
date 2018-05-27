@@ -1,5 +1,8 @@
 import { ConsolePro } from 'console-pro';
 const console = new ConsolePro();
+
+const asyncsort = require('bindings')('asyncsort.node')
+
 export type TypedArray = Int8Array
     | Uint8Array
     | Uint8ClampedArray
@@ -36,15 +39,16 @@ function QuickSortNonRecursive(arr: NumberArray) {
         let i = low;
         let j = high;
         const value = arr[low];
-        while (true)//i==j循环结束  
-        {
+        while (true) {
 
-            while (arr[j] >= value) j--;//右边的都大于等于value  
+            while (arr[j] >= value && j > 0)
+                j--;//右边的都大于等于value  
             if (j <= i) {
                 break;
             }
             swapElement(arr, j, i);
-            while (arr[i] <= value) i++;//左边的都小于等于value  
+            while (arr[i] <= value && i < j)
+                i++;//左边的都小于等于value  
             if (i >= j) {
                 break;
             }
@@ -80,6 +84,7 @@ export function sortBigNumberArray_2(arr: NumberArray) {
     arr.length > 1 && QuickSortNonRecursive(arr);
     return arr;
 }
+export const sortBigNumberArray_3 = asyncsort.numberSort;
 export function sortBigNumberArray(arr: NumberArray) {
     // const g = console.group(arr.join());
     const indexs = new Uint32Array(arr.length);
@@ -135,9 +140,13 @@ if (require.main === module) {
     debugger
     const arr = Array.from({ length: 100000 }).map((_, i) => Math.random());
     // const arr = [25, 40, 54, 12, 10, 67, 98, 29, 46, 40];
-    console.log(arr)
+    // console.log(arr)
     sortBigNumberArray_1(arr)
     //console.log();
     // console.log(sortBigNumberArray_1([4, 3, 2, 1, 5, 6, 7, 8]));
     // console.log(sortBigNumberArray_1([3, 1, 2]));
+    console.log("zz")
+    var res = asyncsort.numberSort([3, 2, 1, 6, 5, 4]);
+    console.log(res);
+    console.log("end")
 }
